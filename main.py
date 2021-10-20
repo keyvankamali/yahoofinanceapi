@@ -21,8 +21,10 @@ headers = {
 
 response = requests.request("GET", url, headers=headers, params=query_string)
 
-
-data = response.json()
-quote = data["optionChain"]["result"][0]["quote"]
-closing_price = quote["regularMarketPreviousClose"]
-print(closing_price)
+try:
+    data = response.json()
+    quote = data["optionChain"]["result"][0]["quote"]
+    closing_price = quote["regularMarketPreviousClose"]
+    print(closing_price)
+except Exception as e:
+    print(str(e))
